@@ -354,7 +354,7 @@ img {
 
 /*=============== ABOUT ===============*/
 .about-container {
-  grid-template-columns: 3fr 6fr 2fr;
+  grid-template-columns: max-content 1fr;
   align-items: center;
   column-gap: 4rem;
 }
@@ -371,26 +371,18 @@ img {
   box-sizing: border-box;
 }
 
-.about-video {
+.about-img {
   width: 100%;
   height: 100%;
   border-radius: 0.75rem; /* slightly smaller radius so gradient shows */
   overflow: hidden;
-  background: #000; /* fallback if video doesn't load */
 }
 
-.about-video video {
+.about-img img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* ensures it fills nicely */
+  object-fit: cover;
   display: block;
-}
-
-.about-experience video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* ensures video fills card without stretching */
-  border-radius: 1rem; /* matches card */
 }
 
 .about-no,
@@ -421,15 +413,6 @@ img {
   background-clip: text;
   background-size: 0% 100%;
   background-repeat: no-repeat;
-}
-
-.about-data {
-  row-gap: 2rem;
-}
-
-.about-item-no {
-  font-size: var(--h2-font-size);
-  margin-bottom: 0.125rem;
 }
 
 
@@ -624,142 +607,6 @@ img {
   box-shadow: 0 12px 24px rgba(255, 106, 0, 0.1);
 }
 
-
-/*=============== PORTFOLIO VIEWER MODAL ===============*/
-.portfolio-modal {
-  position: fixed;
-  inset: 0;
-  background-color: rgba(10, 14, 30, 0.92);
-  backdrop-filter: blur(12px);
-  display: grid;
-  place-items: center;
-  z-index: 2000;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.35s ease;
-}
-
-.portfolio-modal.show-portfolio-modal {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.portfolio-modal-close {
-  position: absolute;
-  top: 1.5rem;
-  right: 2rem;
-  color: var(--white-color);
-  font-size: 2.25rem;
-  cursor: pointer;
-  z-index: 10;
-  transition: color 0.3s, transform 0.3s;
-}
-
-.portfolio-modal-close:hover {
-  color: var(--first-color);
-  transform: rotate(90deg);
-}
-
-.portfolio-modal-content {
-  position: relative;
-  width: 85%;
-  height: 85vh;
-  max-width: 1100px;
-  background-color: var(--body-color);
-  border-radius: 1rem;
-  overflow: hidden;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
-  border: 1px solid rgba(255, 106, 0, 0.15);
-  animation: portfolioFadeIn 0.3s ease;
-}
-
-@keyframes portfolioFadeIn {
-  from {
-    opacity: 0;
-    transform: scale(0.95);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-.portfolio-modal-content iframe {
-  width: 100%;
-  height: 100%;
-  border: none;
-  display: block;
-}
-
-/* Loading spinner */
-.portfolio-spinner {
-  position: absolute;
-  inset: 0;
-  display: grid;
-  place-items: center;
-  background: var(--body-color);
-  z-index: 5;
-  transition: opacity 0.3s ease;
-}
-
-.portfolio-spinner.hidden {
-  opacity: 0;
-  pointer-events: none;
-}
-
-.spinner-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  row-gap: 1.25rem;
-}
-
-.spinner-ring {
-  width: 48px;
-  height: 48px;
-  border: 4px solid rgba(255, 106, 0, 0.15);
-  border-top-color: var(--first-color);
-  border-radius: 50%;
-  animation: spinnerRotate 0.8s linear infinite;
-}
-
-.spinner-text {
-  font-size: var(--normal-font-size);
-  color: var(--text-color);
-  font-weight: var(--font-medium);
-  letter-spacing: 0.5px;
-  animation: spinnerPulse 1.5s ease-in-out infinite;
-}
-
-@keyframes spinnerRotate {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes spinnerPulse {
-  0%, 100% {
-    opacity: 0.6;
-  }
-  50% {
-    opacity: 1;
-  }
-}
-
-/* Portfolio modal responsive */
-@media screen and (max-width: 768px) {
-  .portfolio-modal-content {
-    width: 95%;
-    height: 75vh;
-    border-radius: 0.75rem;
-  }
-
-  .portfolio-modal-close {
-    top: 1rem;
-    right: 1rem;
-    font-size: 1.75rem;
-  }
-}
 
 /*=============== RESUME ===============*/
 .resume-container {
@@ -985,6 +832,11 @@ img {
   margin-top: 1rem;
 }
 
+.contact-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
 .contact-message {
   position: absolute;
   bottom: 5.5rem;
@@ -992,6 +844,14 @@ img {
   color: var(--title-color);
   font-size: var(--small-font-size);
   font-weight: var(--font-medium);
+}
+
+.contact-message.color-success {
+  color: #22c55e;
+}
+
+.contact-message.color-error {
+  color: #ef4444;
 }
 /*=============== FOOTER ===============*/
 .footer {
